@@ -17,14 +17,15 @@
 prefix: "&5[&9LMS&5]&f"
 
 # Determine whether the LMS is enabled by default.
-# If the LMS is disabled. players cannot join the LMS.
+# If the LMS is disabled, players cannot join the LMS.
 LMSEnabled: true
 
 # Vault section
 ################################################################################
 # Enable the LMS plugin to hook with vault for the entry fees feature.
+# Note: You need an economy plugin such as Essentials so Vault can register into it in order to use this feature.
 # If you set this option to false, simply ignore the whole Vault section.
-EnableVault: true
+EnableVault: false
 
 # Entry fees required to join the game.
 EntryFees: 300
@@ -52,7 +53,7 @@ MinPlayerRequired: 2
 MaxPlayerAllowed: 20
 
 # Broadcast whenever the LMS is joinable for every interval (in seconds).
-BroadcastInterval: 120
+BroadcastInterval: 300
 
 # The duration of the lobby countdown in seconds.
 CountdownDuration: 120
@@ -69,7 +70,8 @@ ClearLoot: true
 # If you do not wish to run any command, just set the section to
 # KillerRewards: []
 KillerRewards:
-  - give %player% diamond_sword 1
+  - effect give %player% regeneration 5 1
+  - effect give %player% strength 3 0
 
 # A list of commands that will run when a player wins.
 # The placeholder %player% represents the winner of the LMS.
@@ -77,6 +79,15 @@ KillerRewards:
 # WinnerRewards: []
 WinnerRewards:
   - give %player% diamond 10
- 
-#The duration of the LMS ending phase before the winner is teleported back to its original location.
+  
+# The duration of the LMS ending phase before the winner is teleported back to its original location.
 WinnerDuration: 15
+
+# Hide players nametags when the game starts. This is to prevent teaming.
+HideNametag: true
+
+# Change players skin to the same skin when the game starts. This is to prevent teaming.
+ChangeSkin: true
+
+# The skin that is used in game if the value of ChangeSkin is true.
+SkinFromPlayer: "Notch"
