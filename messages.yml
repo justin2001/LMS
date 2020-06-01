@@ -75,19 +75,19 @@ Command:
 # The player does not have the entry fees required. (Only if you set EnableVault: true in config.yml)
 # The %EntryFees% placeholder is determined by the value of EntryFees set in the config.yml.
     NotEnoughMoney: "&cYou don't have the required entry fees ($%EntryFees%) to join the game."
-  
+    
 # When a player successfully joined the LMS.
     Joined: "%prefix% &eWelcome to the LMS lobby. You are currently player number &d%PlayerPosition% &eto join the lobby. Please wait patiently for the game to start."
-  
+    
 # /lms leave
 # The permission of this command is lms.leave
   Leave:
 # Player not in game tries to leave the LMS.
     NotInGame: "%prefix% &cYou are not in a game."
-  
+    
 # Player successfully left the LMS.
     Left: "%prefix% &eYou have left the LMS game."
-  
+    
 # /lms vote
 # The permission of this command is lms.vote
   Vote:
@@ -95,16 +95,28 @@ Command:
     NotInGame: "%prefix% &cYou can't vote as you are not in a game."
 # Player tries to vote but the game has started.
     GameStarted: "%prefix% &cYou can't vote as the game has started."
+########################################################################################################################   
 # Player tries to vote but does not specify the kit.
+# The format for listing kits is <kit_name_format@separator>
+# Everytime the plugin list a kit name, the kit_name_format will be applied in front of the kit name,
+# the separator will be applied after the kit name.
+# For example, the default message has this format: <&d@&e, >
+# In default we have 3 kits which are Chain, Gold and Diamond.
+# "&d" will be applied in front of "Chain" followed by "&e, "
+# then this process repeats again with gold and diamond.
+# But keep in mind, the last kit name (in this case is diamond) would not have the separator behind.
+# Message that will be shown after converting the format <&d@&e, >:
+# &dGold&e, &dChain&e, &dDiamond
+########################################################################################################################
     NotSpecific:
       - "%prefix% &cUsage /lms vote <kit>"
-      - "&eKits available: &dGold&e, &dChain&e, &dDiamond"
+      - "&eKits available: <&d@&e, >"
 # Player tries to vote but the kit does not exist in kits.yml
     KitDoesNotExist: "%prefix% &cThe kit you have voted for does not exist. Type /lms vote to view a list of kits."
-  
+    
 # Player successfully voted.
     Voted: "%prefix% &eYou have voted for the &d%kit% &ekit. Thanks for voting!"
-  
+    
 # /lms votes
 # The permission of this command is lms.votes
 # To display vote results, the format is
@@ -121,27 +133,27 @@ Command:
   Votes:
     - "%prefix% &7Votes for LMS Kits"
     - "votes-&e%kit%: &d%VoteCount%"
-  
+    
 # /lms enable
 # The permission of this command is lms.enable
   Enable:
 # CommandSender tries to enable LMS that is already enabled.
     AlreadyEnabled: "%prefix% &cLMS has already enabled."
-  
+    
 # CommandSender successfully enabled LMS.
     LMSEnabled: "%prefix% &eLMS has been enabled."
-  
+    
 # /lms disable
 # The permission of this command is lms.disable
   Disable:
 # CommandSender tries to disabled LMS that is already disabled.
     AlreadyDisabled: "%prefix% &cLMS has already disabled."
-  
+    
 # CommandSender successfully disabled LMS.
     LMSDisabled: "%prefix% &eLMS has been disabled."
 # Broadcast LMS disabled message.
     Broadcast: "%prefix% &eThe LMS has been disabled for now. All matches have been force stopped."
-  
+    
 # /lms start
 # The permission of this command is lms.start
   Start:
@@ -153,12 +165,12 @@ Command:
     LMSIsEnding: "%prefix% &cThe LMS already has a winner and is ending shortly."
 # CommandSender tries to force start the LMS but there is only one player in lobby.
     NotEnoughPlayers: "%prefix% &cYou need to have at least 2 players in the LMS lobby in order to force start the game."
-  
+    
 # CommandSender successfully force started the LMS.
     ForceStarted: "%prefix% &eYou have force started the LMS."
 # Broadcast LMS force started message.
     Broadcast: "%prefix% &eThe LMS has been force started."
-  
+    
 # /lms stop
 # The permission of this command is lms.stop
   Stop:
@@ -166,12 +178,12 @@ Command:
     LMSNotInProgress: "%prefix% &cThe LMS is not in progress."
 # CommandSender tries to force stop the LMS which is ending.
     LMSIsEnding: "%prefix% &cThe LMS already has a winner and is ending shortly."
-  
+    
 # CommandSender successfully force stopped the LMS.
     ForceStopped: "%prefix% &eYou have force stopped the LMS."
 # Broadcast LMS force stopped message.
     Broadcast: "%prefix% &eThe LMS has been force stopped."
-  
+    
 # /lms reload
 # The permission of this command is lms.reload
   Reload:
@@ -179,7 +191,7 @@ Command:
     Reloaded: "%prefix% &eThe plugin has been reloaded."
 # Broadcast reload message.
     Broadcast: "%prefix% &eThe Last Man Standing plugin has been reloaded. All matches have been force stopped."
-  
+    
 # /lms set
 # The permission of this command is lms.set
 # When player does not specify what (lobby/spawn/kit) to set.
@@ -189,10 +201,10 @@ Command:
     - "&c/lms set lobby - &eSet the LMS lobby spawn point."
     - "&c/lms set spawn <number> - &eSet the LMS game spawn point for each player."
     - "&c/lms set kit <name> - &eCreate each LMS kit."
-  
+    
 # /lms set lobby
   SetLobby: "%prefix% &eThe LMS lobby has been set."
- 
+  
 # /lms set spawn
   SetSpawn:
 # Player tries to set spawn but does not specify a number.
@@ -201,14 +213,14 @@ Command:
     NotANumber: "%prefix% &c'%SpawnPosition%' is not a number. Please specify a number for the spawn point you want to set."
 # Player successfully set the spawn point for <number>.
     SpawnSet: "%prefix% &eSpawn &d%SpawnPosition% &ehas been set."
-  
+    
 # /lms set kit
   SetKit:
 # Player tries to create kit but does not specify a name.
     NotSpecific: "%prefix% &cUsage: /lms set kit <name>"
 # Player successfully created a kit.
     KitSet: "%prefix% &eKit &d%KitName% &ehas been created."
- 
+  
 # Game section
 Game:
 
@@ -246,10 +258,10 @@ Game:
       3: "%prefix% &eMatch starting in 3 seconds. Get ready!"
       2: "%prefix% &eMatch starting in 2 seconds. Get ready!"
       1: "%prefix% &eMatch starting in 1 second. Get ready!"
-    
+      
 # When the LMS is started. (Players are allowed to move and the PVP is enabled)
   Started: "%prefix% &aThe LMS match has now begun, good luck!"
- 
+  
 # When a player is eliminated from the LMS.
   Eliminated:
 # Broadcast player eliminated message. (When there is more than 2 players left)
@@ -261,8 +273,8 @@ Game:
 
   Kill:
 # Message that will be sent when a player kills another player and eliminate them from the LMS.
-    Message: "&aYou have been eliminated &d%player%."
-  
+    Message: "&aYou have eliminated &d%player%."
+    
   Winner:
 # Broadcast LMS winner message.
 # The %WinnersPot% placeholder is determined by the sum of entry fees for the number of players that have joined the LMS. (Only if you set EnableVault: true in config.yml)
